@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "disc3d-ucds-etl"
+version = "0.1.0"
+description = "DISC3D to Universal Camera Dataset Specification ETL utilities"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+  {name = "DISC3D Pipeline Contributors"}
+]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "pillow>=10.0",
+  "jsonschema>=4.0"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+disc3d-ucds = "disc3d_ucds.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

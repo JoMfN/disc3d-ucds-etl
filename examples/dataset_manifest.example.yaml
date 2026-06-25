@@ -1,0 +1,8 @@
+dataset_id: specimen_001
+images: input/images
+campos: input/CamPos.txt
+metashape_xml: input/dataset.xml
+units: mm
+notes: >
+  Example manifest. This file is intentionally not required by the CLI yet.
+  It documents how a DISC3D acquisition should be described.

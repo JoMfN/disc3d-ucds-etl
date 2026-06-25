@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UCDS Dataset",
+  "type": "object",
+  "required": [
+    "ucds_version",
+    "dataset_id",
+    "image_dir",
+    "calibration_file",
+    "poses_file",
+    "metadata_file"
+  ],
+  "properties": {
+    "ucds_version": {
+      "type": "string"
+    },
+    "dataset_id": {
+      "type": "string"
+    },
+    "image_dir": {
+      "type": "string"
+    },
+    "calibration_file": {
+      "type": "string"
+    },
+    "poses_file": {
+      "type": "string"
+    },
+    "metadata_file": {
+      "type": "string"
+    }
+  }
+}
