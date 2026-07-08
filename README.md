@@ -108,3 +108,35 @@ image identity + intrinsics + extrinsics + acquisition metadata
 ```
 
 Everything else is an exporter.
+
+
+## Batch export preparation for large DISC3D repositories
+
+The repository now includes a regex-based export preparation command for large
+collections. It discovers DISC3D scan folders, reads `CamPos.txt` and calibrated
+Metashape XML files, and materializes a single export folder per specimen.
+
+```bash
+python -m disc3d_ucds.cli prepare-exports \
+  --source-root /data/MetashapeDisc3D \
+  --export-root /data/disc3d_exports \
+  --workers 4 \
+  --image-mode hardlink \
+  --dry-run
+```
+
+Full run:
+
+```bash
+python -m disc3d_ucds.cli prepare-exports \
+  --source-root /data/MetashapeDisc3D \
+  --export-root /data/disc3d_exports \
+  --workers 4 \
+  --image-mode hardlink
+```
+
+The target folder contains `dataset.json`, `calibration.json`, `poses.json`,
+`metadata.json`, `transforms.json`, `images/`, `colmap/`, and a
+`nerfstudio/` compatibility folder.
+
+See `docs/BATCH_EXPORTS_REGEX.md`.
