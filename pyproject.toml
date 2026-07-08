@@ -9,7 +9,7 @@ description = "DISC3D to Universal Camera Dataset Specification ETL utilities"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-  {name = "DISC3D Pipeline Contributors"}
+  {name = "Joachim Snellings"}
 ]
 dependencies = [
   "numpy>=1.24",
