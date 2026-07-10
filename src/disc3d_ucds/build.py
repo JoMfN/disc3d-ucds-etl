@@ -4,11 +4,28 @@ import json
 import os
 import shutil
 import subprocess
+import re
 from pathlib import Path
 
 from .geometry import camera_center_to_tvec, opk_to_world_to_camera, rotation_to_quaternion_wxyz
 from .parsers.campos import parse_campos
 from .parsers.metashape_xml import extract_intrinsics
+
+IMAGE_NUMBER_RE = re.compile(r"image[_-]?0*(\d+)", re.IGNORECASE)
+
+
+def natural_image_key(path_or_name: str) -> tuple[int, str]:
+    name = Path(path_or_name).name
+    match = IMAGE_NUMBER_RE.search(name)
+
+    if match:
+        return int(match.group(1)), name
+
+    numbers = re.findall(r"\d+", name)
+    if numbers:
+        return int(numbers[0]), name
+
+    return 10**12, name
 
 
 def _materialize_file(src: Path, dst: Path, mode: str = "copy") -> None:
@@ -82,7 +99,7 @@ def build_ucds(
     (out / "images").mkdir(exist_ok=True)
 
     calibration = extract_intrinsics(xml)
-    records = parse_campos(campos)
+    records = sorted(parse_campos(campos), key=lambda rec: natural_image_key(rec.image_name))
 
     poses = []
     missing = []
