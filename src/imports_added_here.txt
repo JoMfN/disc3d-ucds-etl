@@ -1,0 +1,1 @@
+git clone of the `https://github.com/JoMfN/disc3d-mask-helper` is possible here. Other environments could be seperated here. 
